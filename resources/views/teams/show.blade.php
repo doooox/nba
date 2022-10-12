@@ -14,4 +14,19 @@
         <p>Comment: {{ $comment->content }} </p>
         <small>Posted by: {{ $comment->user->name }} at {{ $comment->created_at }} </small>
     @endforeach
+
+    <form method="POST" action="/teams/{{ $team->id }}/comments">
+        @csrf
+
+        <div>
+            <label>Leave a comment:</label>
+            <textarea name="content" rows="5" cols="20" class="form-control"></textarea>
+        </div>
+
+        @error('content')
+            <div> {{ $message }} </div>
+        @enderror
+
+        <button type="submit">Submit</button>
+    </form>
 </ul>
