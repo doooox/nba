@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateCommentRequest;
 use App\Models\Team;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CommentReceived;
+
 
 class CommentsController extends Controller
 {
@@ -16,6 +19,7 @@ class CommentsController extends Controller
 
     public function store(CreateCommentRequest $request, $id)
     {
+        $team = Team::find($id);
         $comment = new Comment();
 
         $comment->content = request('content');
@@ -24,7 +28,8 @@ class CommentsController extends Controller
 
         $comment->save();
 
-        // koristio sam dva razlicita nacina za upisivanje u bazu jer mi je u ovom slucaju bilo lakse da na ovaj nacin izvucem user_id
+        Mail::to($team)->send(new CommentReceived($team));
+
 
         return redirect()->back();
     }
