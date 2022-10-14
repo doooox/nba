@@ -25,9 +25,8 @@ class Team extends Model
     {
         return $this->hasMany(Comment::class);
     }
-
-    public function author()
+    public function news()
     {
-      return $this->belongsTo(User::class, 'team_id');
+        return $this->belongsToMany(News::class, 'news_teams');
     }
 }
