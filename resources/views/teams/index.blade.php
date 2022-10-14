@@ -1,7 +1,9 @@
-@include('partials.navbar')
-@foreach ($teams as $team )
+@extends('layouts.master')
+@section('title', 'All News')
 
-    <h1><a href="{{ route('show-team', [ 'id' => $team->id ]) }}">{{ $team->name }}</a></h1>
-
-@endforeach
-@include('partials.sidebar')
+@section('content')
+    <div class="container">
+         @foreach ($teams as $team )
+            <h1><a href="{{ route('show-team', [ 'id' => $team->id ]) }}">{{ $team->name }}</a></h1>
+        @endforeach
+@endsection

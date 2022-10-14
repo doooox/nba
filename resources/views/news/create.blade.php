@@ -1,4 +1,7 @@
-@include('partials.navbar')
+@extends('layouts.master')
+@section('title', 'Create News')
+
+@section('content')
 <form action="/news" method="POST">
      @csrf
     <div>
@@ -25,3 +28,4 @@
 
     <button type="submit">Submit</button>
 </form>
+@endsection
