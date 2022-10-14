@@ -4,9 +4,16 @@
         NBA teams
       </a>
       <ul>
-        <a href="/news">
-           News
-          </a>
+        <li>
+            <a href="/news">
+                News
+            </a>
+        </li>
+        <li>
+            <a href="/news/create">
+                Create News
+            </a>
+        </li>
         @if (!auth()->check())
           <li>
             <a href="/login">Sign in</a>
